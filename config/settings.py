@@ -68,7 +68,6 @@ PROJECT_APPS = [
     "quiz.apps.QuizConfig",
     "payments.apps.PaymentsConfig",
     
-    "phishingsimulation.apps.phishingSimulationConfig",
     "phishingtool.apps.PhishingtoolConfig"
 ]
 
