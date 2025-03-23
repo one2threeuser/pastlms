@@ -1,0 +1,17 @@
+<h2>Create Phishing Campaign</h2>
+<form method="post">
+    {% csrf_token %}
+    <label for="name">Campaign Name:</label>
+    <input type="text" name="name" required>
+
+    <label for="subject">Email Subject:</label>
+    <input type="text" name="subject" required>
+
+    <label for="message">Email Message:</label>
+    <textarea name="message" required></textarea>
+
+    <label for="launch_date">Launch Date:</label>
+    <input type="datetime-local" name="launch_date" required>
+
+    <button type="submit">Create Campaign</button>
+</form>

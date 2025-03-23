@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% block title %} Phishing Simulation | PAST {% endblock title %}
+{% load static %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb"></nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Phishing Simulation</li>
+    </ol>
+</nav>
+
+<h2>Send Phishing Email</h2>
+<form method="post">
+    {% csrf_token %}
+    <label for="user">Select User:</label>
+    <select name="user_id" required>
+        {% for user in users %}
+        <option value="{{ user.id }}">{{ user.username }} ({{ user.email }})</option>
+        {% endfor %}
+    </select>
+
+    <label for="template">Select Email Template:</label>
+    <select name="template_id" required>
+        {% for template in templates %}
+        <option value="{{ template.id }}">{{ template.subject }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Send Phishing Email</button>
+</form>
+
+
+
+<!-- testttt -->
+{% if request.user.is_superuser %}
+<div class="manage-wrap">
+    <a class="btn btn-sm btn-primary" href="{% url 'add_student' %}"><i class="fas fa-plus"></i> Add Student</a>
+    <a class="btn btn-sm btn-primary" target="_blank" href="{% url 'student_list_pdf' %}"><i class="fas fa-download"></i> Download pdf</a> <!--new-->
+</div>
+{% endif %}
+
+<div class="title-1"><i class="fas fa-user-graduate"></i>Students</div>
+<br>
+<br>
+
+{% include 'snippets/messages.html' %}
+{% include 'snippets/filter_form.html' %}
+
+<div class="table-responsive table-shadow table-light table-striped m-0 mt-4">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th> ID No. </th>
+                <th> Full Name </th>
+                <th> Email </th>
+                <th> Program </th>
+                {% if request.user.is_superuser %}
+                <th> Action </th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td> {{ forloop.counter }}.</td>
+                <td>{{ user.username }} </td>
+                <td>{{ student.student.get_full_name }}</a></td>
+                <td>{{ student.student.email }} </td>
+                <td>{{ student.program }}</td>
+
+                
+                {% empty %}
+                <tr>
+                  <td colspan="6">
+                  <span class="text-danger">
+                    No Student.
+                    {% if request.user.is_superuser %}
+                    <a href="{% url 'add_student' %}">
+                    <i class="primary" style="font-size: 22px;">
+                       Add Student Now.
+                    </i>
+                    {% endif %}
+                    </a>
+                  </span>
+                </td>
+                </tr>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- <h2>Create Phishing Campaign</h2>
+<form method="post">
+    {% csrf_token %}
+    <label for="name">Campaign Name:</label>
+    <input type="text" name="name" required>
+
+    <label for="subject">Email Subject:</label>
+    <input type="text" name="subject" required>
+
+    <label for="message">Email Message:</label>
+    <textarea name="message" required></textarea>
+
+    <label for="launch_date">Launch Date:</label>
+    <input type="datetime-local" name="launch_date" required>
+
+    <button type="submit">Create Campaign</button>
+</form>
+
+
+
+<h2>Campaign Dashboard</h2>
+<table>
+    <tr>
+        <th>Campaign</th>
+        <th>Launch Date</th>
+        <th>Total Targets</th>
+        <th>Emails Sent</th>
+        <th>Links Clicked</th>
+    </tr>
+    {% for item in data %}
+    <tr>
+        <td>{{ item.campaign.name }}</td>
+        <td>{{ item.campaign.launch_date }}</td>
+        <td>{{ item.total_targets }}</td>
+        <td>{{ item.emails_sent }}</td>
+        <td>{{ item.links_clicked }}</td>
+    </tr>
+    {% endfor %}
+</table> -->
+
+
+{% endblock content %}

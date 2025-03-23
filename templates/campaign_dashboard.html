@@ -1,0 +1,19 @@
+<h2>Campaign Dashboard</h2>
+<table>
+    <tr>
+        <th>Campaign</th>
+        <th>Launch Date</th>
+        <th>Total Targets</th>
+        <th>Email Opened</th>
+        <th>Link Clicked</th>
+    </tr>
+    {% for item in data %}
+    <tr>
+        <td>{{ item.campaign.name }}</td>
+        <td>{{ item.campaign.launch_date }}</td>
+        <td>{{ item.total_targets }}</td>
+        <td>{{ item.email_opened }}</td>
+        <td>{{ item.link_clicked }}</td>
+    </tr>
+    {% endfor %}
+</table>
