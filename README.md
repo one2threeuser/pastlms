@@ -12,7 +12,7 @@
 - Clone the repo with
 
 ```bash
-git clone https://github.com/adilmohak/django-lms.git
+git clone https://github.com/one2threeuser/pastlms.git
 ```
 
 - Create and activate a python virtual environment
