@@ -19,6 +19,9 @@
 <div class="manage-wrap">
     <div class="d-flex">
         <div class="">
+            <a href="{% url 'program_detail' course.program.id %}" class="btn btn-secondary btn-lg px-4" style="font-size: 1.1rem;">
+                {% trans "< Back" %}
+            </a>
             {% if request.user.is_superuser %}
             <a class="btn btn-sm btn-light" href="{% url 'edit_course' course.slug %}">
                 <i class="fas fa-pencil-alt"></i> Edit course
@@ -383,6 +386,7 @@
 
     </div>
  {% endif %}
+
 
 
 <div class="site-section mb-5 mt-4">

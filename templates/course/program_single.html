@@ -2,6 +2,7 @@
 {% block title %} {{ title }} | PAST {% endblock title %}
 {% load static %}
 {% load custom_filters %}
+{% load i18n%}
 
 {% block content %}
 
@@ -13,11 +14,15 @@
     </ol>
 </nav>
 
-{% if request.user.is_superuser %}
 <div class="manage-wrap">
-    <a class="btn btn-sm btn-primary" href="{% url 'course_add' pk=program.pk %}"><i class="fas fa-plus"></i> Add Course</a>
+    <a href="{% url 'programs' %}" class="btn btn-secondary btn-lg px-4" style="font-size: 1.1rem;">
+        {% trans "< Back" %}
+    </a>
+    {% if request.user.is_superuser %}
+        <a class="btn btn-sm btn-primary" href="{% url 'course_add' pk=program.pk %}"><i class="fas fa-plus"></i> Add Course</a>
+    {% endif %}
 </div>
-{% endif %}
+
 
 {% if program %}
 <div class="title-1">{{ program.title }}</div>

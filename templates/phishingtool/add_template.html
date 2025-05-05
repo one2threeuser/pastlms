@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Create Phishing Email Template{% endblock %}
+
+{% block content %}
+<h2>Create Phishing Email Template</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary mt-3">Create Template</button>
+</form>
+
+<a href="{% url 'phishing_simulation' %}" class="btn btn-link mt-3">Back to Simulation</a>
+{% endblock %}

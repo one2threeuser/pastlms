@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load quiz_tags %}
 {% block title %}
 {% trans "Result of" %} {{ sitting.quiz.title }} {% trans "for" %} {{ sitting.user }} | PAST
 {% endblock %}
@@ -48,7 +49,7 @@
         <div style="max-width: 100px;"><img src="{{ question.figure.url }}" alt="{{ question.figure }}" width="100px"/></div>
         {% endif %}
       </td>
-	  <td>{{ question }}</td>
+	  <td>{{ question|answer_choice_to_string:question.user_answer }}</td>
 	  <td>
 		{% if question.id in sitting.get_incorrect_questions %}
 		  <p>{% trans "incorrect" %}</p>

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Create Redirect Page{% endblock %}
+
+{% block content %}
+<h2>Create a New Redirect Page</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success mt-3">Save Redirect Page</button>
+</form>
+
+<a href="{% url 'phishing_simulation' %}" class="btn btn-link mt-3">Back to Simulation</a>
+{% endblock %}

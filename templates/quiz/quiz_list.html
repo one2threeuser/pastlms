@@ -16,13 +16,16 @@
         <li class="breadcrumb-item active" aria-current="page">Quizzes</li>
     </ol>
 </nav>
-
-{% if request.user.is_superuser or request.user.is_lecturer %}
 <div class="manage-wrap">
-    <a class="btn btn-primary" href="{% url 'quiz_create' course.slug %}"><i class="fas fa-plus"></i> Add Quiz</a>
-</div>
-{% endif %}
+    <a href="{{ course.get_absolute_url }}" class="btn btn-secondary btn-lg px-4" style="font-size: 1.1rem;">
+        {% trans "< Back" %}
+    </a>
+    {% if request.user.is_superuser or request.user.is_lecturer %}
 
+        <a class="btn btn-primary" href="{% url 'quiz_create' course.slug %}"><i class="fas fa-plus"></i> Add Quiz</a>
+
+    {% endif %}
+</div>
 <div class="title-1">Test and Quiz [{{ course|truncatechars:25 }}]</div>
 <br>
 <br>

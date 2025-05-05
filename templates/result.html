@@ -32,6 +32,12 @@
 
 <style>#progress-main{display: none;}</style>
 
+<div class="manage-wrap">
+  <a href="{% url 'program_detail' course.program.id %}" class="btn btn-secondary btn-lg px-4" style="font-size: 1.1rem;">
+      {% trans "< Back to Program" %}
+  </a>
+</div>
+
 <div class="container" id="progress-main">
   {% if previous.answers %}
     <div class="card bg-white p-3">
